@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=PbLKKmxoRGWDwROEFNxOcsnKYGD0NNSc&__ec_v__=20190126"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+var data = [{
+            Rank: "1",
+            name: "Dubai International Airport",
+            location: "Dubai",
+            code: "DXB",
+            value1: "77,453,466",
+            change: "10.7",
+            lat: "25.25279999",
+            lon: "55.36439896"
+        }, {
+            Rank: "2",
+            name: "Heathrow Airport",
+            location: "London",
+            code: "LHR",
+            value1: "69,816,491",
+            change: "2.5",
+            lat: "51.4706",
+            lon: "0.2741"
+        }, {
+            Rank: "3",
+            name: "Hong Kong International Airport",
+            location: "Hong Kong",
+            code: "HKG",
+            value1: "68,071,282",
+            change: "8.2",
+            lat: "22.308901",
+            lon: "113.915001"
+        }, {
+            Rank: "4",
+            name: "A\'a8\'a6roport de Paris-Charles de Gaulle",
+            location: "Paris",
+            code: "CDG",
+            value1: "60,366,933",
+            change: "3.0",
+            lat: "49.0046",
+            lon: "2.33"
+        }, {
+            Rank: "5",
+            name: "Amsterdam Airport",
+            location: "Amsterdam",
+            code: "AMS",
+            value1: "58,245,545",
+            change: "6.0",
+            lat: "52.308601",
+            lon: "4.76389"
+        }, {
+            Rank: "6",
+            name: "Singapore Changi Airport",
+            location: "Singapore",
+            code: "SIN",
+            value1: "54,836,000",
+            change: "2.9",
+            lat: "1.35019",
+            lon: "103.994003"
+        }, {
+            Rank: "7",
+            name: "Flughafen Frankfurt/Main",
+            location: "Frankfurt",
+            code: "FRA",
+            value1: "53,994,154",
+            change: "2.4",
+            lat: "50.033333",
+            lon: "8.570556"
+        }, {
+            Rank: "8",
+            name: "Incheon International Airport",
+            location: "Incheon",
+            code: "ICN",
+            value1: "48,720,319",
+            change: "8.5",
+            lat: "37.46910095",
+            lon: "126.4509964"
+        }, {
+            Rank: "9",
+            name: "Suvarnabhumi International Airport",
+            location: "Bangkok",
+            code: "BKK",
+            value1: "43,251,807",
+            change: "16.3",
+            lat: "13.68109989",
+            lon: "100.7470016"
+        }, {
+            Rank: "10",
+            name: "Atat\'a8\'b9rk International Airport",
+            location: "Istanbul",
+            code: "IST",
+            value1: "41,998,251",
+            change: "10.1",
+            lat: "40.976898",
+            lon: "28.8146"
+        }, {
+            Rank: "11",
+            name: "Taiwan Taoyuan International Airport",
+            location: "Taipei",
+            code: "TPE",
+            value1: "38,104,007",
+            change: "7.6",
+            lat: "25.0777",
+            lon: "121.244263"
+        }, {
+            Rank: "12",
+            name: "Gatwick Airport",
+            location: "London",
+            code: "LGW",
+            value1: "36,663,907",
+            change: "6.4",
+            lat: "51.148102",
+            lon: "-0.190278"
+        }, {
+            Rank: "13",
+            name: "KL International Airport",
+            location: "Kuala Lumpur",
+            code: "KUL",
+            value1: "34,438,229",
+            change: "0.0",
+            lat: "2.745579958",
+            lon: "101.7099991"
+        }, {
+            Rank: "14",
+            name: "Aeropuerto de Adolfo Su\'a8\'a2rez Madrid-Barajas",
+            location: "Madrid",
+            code: "MAD",
+            value1: "33,765,583",
+            change: "14.1",
+            lat: "40.471926",
+            lon: "-3.56264"
+        }, {
+            Rank: "15",
+            name: "Munich Airport",
+            location: "Munich",
+            code: "MUC",
+            value1: "31,313,329",
+            change: "3.5",
+            lat: "48.353802",
+            lon: "11.7861"
+        }, {
+            Rank: "16",
+            name: "Hamad International Airport",
+            location: "Doha",
+            code: "DOH",
+            value1: "30,906,066",
+            change: "17.3",
+            lat: "25.273056",
+            lon: "51.608056"
+        }, {
+            Rank: "17",
+            name: "Narita International Airport",
+            location: "Tokyo",
+            code: "NRT",
+            value1: "30,547,564",
+            change: "3.2",
+            lat: "35.76470184",
+            lon: "140.3860016"
+        }, {
+            Rank: "18",
+            name: "John F. Kennedy International Airport",
+            location: "New York NY",
+            code: "JFK",
+            value1: "30,020,301",
+            change: "6.5",
+            lat: "40.63980103",
+            lon: "-73.77890015"
+        }, {
+            Rank: "19",
+            name: "Aeropuerto de Barcelona-El Prat",
+            location: "Barcelona",
+            code: "BCN",
+            value1: "29,067,531",
+            change: "6.7",
+            lat: "41.2971",
+            lon: "2.07846"
+        }, {
+            Rank: "20",
+            name: "Aeroporto di Roma-Fiumicino",
+            location: "Rome",
+            code: "FCO",
+            value1: "28,280,267",
+            change: "5.4",
+            lat: "41.8002778",
+            lon: "12.2388889"
+        }, {
+            Rank: "21",
+            name: "Flughafen Z\'a8\'b9rich",
+            location: "Zurich",
+            code: "ZRH",
+            value1: "25,634,998",
+            change: "3.1",
+            lat: "47.464699",
+            lon: "8.54917"
+        }, {
+            Rank: "22",
+            name: "Toronto Pearson International Airport",
+            location: "Toronto ON",
+            code: "YYZ",
+            value1: "25,177,558",
+            change: "7.7",
+            lat: "43.67720032",
+            lon: "-79.63059998"
+        }, {
+            Rank: "23",
+            name: "Dublin Airport",
+            location: "Dublin",
+            code: "DUB",
+            value1: "24,869,405",
+            change: "14.9",
+            lat: "53.421299",
+            lon: "-6.27007"
+        }, {
+            Rank: "24",
+            name: "Copenhagen Airport",
+            location: "Copenhagen",
+            code: "CPH",
+            value1: "24,639,122",
+            change: "4.4",
+            lat: "55.61790085",
+            lon: "12.65600014"
+        }, {
+            Rank: "25",
+            name: "Pudong International Airport",
+            location: "Shanghai",
+            code: "PVG",
+            value1: "23,426,603",
+            change: "18.3",
+            lat: "31.14340019",
+            lon: "121.8050003"
+        }, {
+            Rank: "26",
+            name: "Brussels Airport",
+            location: "Brussels",
+            code: "BRU",
+            value1: "23,225,980",
+            change: "6.9",
+            lat: "50.90140152",
+            lon: "4.48443985"
+        }, {
+            Rank: "27",
+            name: "Abu Dhabi International Airport",
+            location: "Abu Dhabi",
+            code: "AUH",
+            value1: "22,834,963",
+            change: "18.6",
+            lat: "24.43300056",
+            lon: "54.65110016"
+        }, {
+            Rank: "28",
+            name: "Vienna International Airport",
+            location: "Vienna",
+            code: "VIE",
+            value1: "22,147,149",
+            change: "1.5",
+            lat: "48.11029816",
+            lon: "16.56970024"
+        }, {
+            Rank: "29",
+            name: "Miami International Airport",
+            location: "Miami FL",
+            code: "MIA",
+            value1: "21,206,557",
+            change: "5.5",
+            lat: "25.79319954",
+            lon: "-80.29060364"
+        }, {
+            Rank: "30",
+            name: "Antalya International Airport",
+            location: "Antalya",
+            code: "AYT",
+            value1: "20,863,040",
+            change: "-5.5",
+            lat: "36.898701",
+            lon: "30.800501"
+        }, {
+            Rank: "31",
+            name: "Stansted Airport",
+            location: "London",
+            code: "STN",
+            value1: "20,768,053",
+            change: "10.6",
+            lat: "51.88499832",
+            lon: "0.234999999"
+        }, {
+            Rank: "32",
+            name: "Manchester Airport",
+            location: "Manchester",
+            code: "MAN",
+            value1: "20,724,999",
+            change: "6.3",
+            lat: "53.35369873",
+            lon: "-2.274950027"
+        }, {
+            Rank: "33",
+            name: "Los Angeles International Airport",
+            location: "Los Angeles CA",
+            code: "LAX",
+            value1: "20,000,009",
+            change: "8.6",
+            lat: "33.94250107",
+            lon: "-118.4079971"
+        }, {
+            Rank: "34",
+            name: "A\'a8\'a6roport de Paris-Orly",
+            location: "Paris",
+            code: "ORY",
+            value1: "18,818,663",
+            change: "5.0",
+            lat: "48.7233333",
+            lon: "2.3794444"
+        }, {
+            Rank: "35",
+            name: "Beijing Capital International Airport",
+            location: "Beijing",
+            code: "PEK",
+            value1: "18,601,898",
+            change: "10.5",
+            lat: "40.08010101",
+            lon: "116.5849991"
+        }, {
+            Rank: "36",
+            name: "Aeropuerto de Palma de Mallorca",
+            location: "Palma De Mallorca",
+            code: "PMI",
+            value1: "18,107,070",
+            change: "0.6",
+            lat: "39.55170059",
+            lon: "2.738810062"
+        }, {
+            Rank: "37",
+            name: "King Abulaziz International Airport",
+            location: "Jeddah",
+            code: "JED",
+            value1: "18,083,745",
+            change: "0.3",
+            lat: "21.6796",
+            lon: "39.156502"
+        }, {
+            Rank: "38",
+            name: "Stockholm-Arlanda Airport",
+            location: "Stockholm",
+            code: "ARN",
+            value1: "18,080,833",
+            change: "4.2",
+            lat: "59.65190125",
+            lon: "17.91860008"
+        }, {
+            Rank: "39",
+            name: "D\'a8\'b9sseldorf International Airport",
+            location: "D\'a8\'b9sseldorf",
+            code: "DUS",
+            value1: "18,060,323",
+            change: "3.8",
+            lat: "51.1722",
+            lon: "6.46"
+        }, {
+            Rank: "40",
+            name: "Sheremetyevo International Airport",
+            location: "Moscow",
+            code: "SVO",
+            value1: "17,781,134",
+            change: "-3.8",
+            lat: "55.972599",
+            lon: "37.4146"
+        }, {
+            Rank: "41",
+            name: "Lisbon Airport",
+            location: "Lisbon",
+            code: "LIS",
+            value1: "17,614,499",
+            change: "9.5",
+            lat: "38.7813",
+            lon: "-9.13592"
+        }, {
+            Rank: "42",
+            name: "Ninoy Aquino International Airport",
+            location: "Manila",
+            code: "MNL",
+            value1: "17,168,171",
+            change: "6.8",
+            lat: "14.5086",
+            lon: "121.019997"
+        }, {
+            Rank: "43",
+            name: "Kansai International Airport",
+            location: "Osaka",
+            code: "KIX",
+            value1: "16,253,996",
+            change: "24.5",
+            lat: "34.4272995",
+            lon: "135.2440033"
+        }, {
+            Rank: "44",
+            name: "Milano Malpensa",
+            location: "Milan",
+            code: "MXP",
+            value1: "15,908,074",
+            change: "0.7",
+            lat: "45.6306",
+            lon: "8.72811"
+        }, {
+            Rank: "45",
+            name: "Tel Aviv/Ben Gurion International Airport",
+            location: "Tel-Aviv",
+            code: "TLV",
+            value1: "15,674,250",
+            change: "9.9",
+            lat: "32.01139832",
+            lon: "34.88669968"
+        }, {
+            Rank: "46",
+            name: "Gen\'a8\'a8ve A\'a8\'a6roport",
+            location: "Geneva",
+            code: "GVA",
+            value1: "15,116,493",
+            change: "4.0",
+            lat: "46.23809814",
+            lon: "6.108950138"
+        }, {
+            Rank: "47",
+            name: "Moscow Domodedovo Airport",
+            location: "Moscow",
+            code: "DME",
+            value1: "13,887,161",
+            change: "-21.4",
+            lat: "55.40879822",
+            lon: "37.90629959"
+        }, {
+            Rank: "48",
+            name: "Helsinki-Vantaa Airport",
+            location: "Helsinki",
+            code: "HEL",
+            value1: "13,826,868",
+            change: "2.9",
+            lat: "60.31719971",
+            lon: "24.9633007"
+        }, {
+            Rank: "49",
+            name: "Sydney International Airport",
+            location: "Sydney",
+            code: "SYD",
+            value1: "13,715,091",
+            change: "4.3",
+            lat: "-33.94609833",
+            lon: "151.177002"
+        }, {
+            Rank: "50",
+            name: "Indira Gandhi International Airport",
+            location: "New Delhi",
+            code: "DEL",
+            value1: "13,709,793",
+            change: "4.4",
+            lat: "28.5665",
+            lon: "77.103104"
+        }]
+        var obj = {}
+        var arr = []
+        for (var i = 0; i < data.length; i++) {
+            arr = data[i].lon.split().concat(data[i].lat.split())
+            data[i].name = '\'' + data[i].name + '\''
+                // console.log('"' + data[i].Airport + '"')
+            obj[data[i].name] = arr
+        }
+        console.log(obj)
+
+
+ var geoCoordMap=obj
+console.log("1",obj)
+console.log("2",geoCoordMap)
+
+var convertData = function (data) {
+    var res = [];
+    for (var i = 0; i < data.length; i++) {
+        var geoCoord = geoCoordMap[data[i].name];
+        console.log(geoCoord.concat(data[i].value))
+        if (geoCoord) {
+            res.push({
+                name: data[i].name,
+                value: geoCoord.concat(data[i].value),
+                Rank:data[i].Rank,
+                value1:data[i].value1
+            });
+        }
+    }
+    return res;
+};
+
+option = {
+    title: {
+        text: 'Top 50 Airports',
+
+        left: 'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter:(res)=>{
+            console.log(res)
+            return "机场名:"+res.data.name+"\n排名："+res.data.Rank+"\n总人流："+res.data.value1
+        }
+    },
+    bmap: {
+        center: [51.47, 0.21],
+        zoom: 1,
+        roam: true,
+        mapStyle: {
+            styleJson: [{
+                'featureType': 'water',
+                'elementType': 'all',
+                'stylers': {
+                    'color': '#d1d1d1'
+                }
+            }, {
+                'featureType': 'land',
+                'elementType': 'all',
+                'stylers': {
+                    'color': '#f3f3f3'
+                }
+            }, {
+                'featureType': 'railway',
+                'elementType': 'all',
+                'stylers': {
+                    'visibility': 'off'
+                }
+            }, {
+                'featureType': 'highway',
+                'elementType': 'all',
+                'stylers': {
+                    'color': '#fdfdfd'
+                }
+            }, {
+                'featureType': 'highway',
+                'elementType': 'labels',
+                'stylers': {
+                    'visibility': 'off'
+                }
+            }, {
+                'featureType': 'arterial',
+                'elementType': 'geometry',
+                'stylers': {
+                    'color': '#fefefe'
+                }
+            }, {
+                'featureType': 'arterial',
+                'elementType': 'geometry.fill',
+                'stylers': {
+                    'color': '#fefefe'
+                }
+            }, {
+                'featureType': 'poi',
+                'elementType': 'all',
+                'stylers': {
+                    'visibility': 'off'
+                }
+            }, {
+                'featureType': 'green',
+                'elementType': 'all',
+                'stylers': {
+                    'visibility': 'off'
+                }
+            }, {
+                'featureType': 'subway',
+                'elementType': 'all',
+                'stylers': {
+                    'visibility': 'off'
+                }
+            }, {
+                'featureType': 'manmade',
+                'elementType': 'all',
+                'stylers': {
+                    'color': '#d1d1d1'
+                }
+            }, {
+                'featureType': 'local',
+                'elementType': 'all',
+                'stylers': {
+                    'color': '#d1d1d1'
+                }
+            }, {
+                'featureType': 'arterial',
+                'elementType': 'labels',
+                'stylers': {
+                    'visibility': 'off'
+                }
+            }, {
+                'featureType': 'boundary',
+                'elementType': 'all',
+                'stylers': {
+                    'color': '#fefefe'
+                }
+            }, {
+                'featureType': 'building',
+                'elementType': 'all',
+                'stylers': {
+                    'color': '#d1d1d1'
+                }
+            }, {
+                'featureType': 'label',
+                'elementType': 'labels.text.fill',
+                'stylers': {
+                    'color': '#999999'
+                }
+            }]
+        }
+    },
+    series : [
+        {
+            name: 'pm2.5',
+            type: 'scatter',
+            coordinateSystem: 'bmap',
+            data: convertData(data),
+            symbolSize: function (val) {
+                return 8;
+            },
+            encode: {
+                value: 2
+            },
+            label: {
+                formatter: '{b}',
+                position: 'right',
+                show: false
+            },
+            itemStyle: {
+                color: 'red'
+            },
+            // emphasis: {
+            //     label: {
+            //         show: true
+            //     }
+            // }
+        },
+        // {
+        //     name: 'Top 5',
+        //     type: 'scatter',
+        //     coordinateSystem: 'bmap',
+        //     data: convertData(data.sort(function (a, b) {
+        //         return b.value - a.value;
+        //     }).slice(0, 6)),
+        //     symbolSize: function (val) {
+        //         return val[2] / 10;
+        //     },
+        //     encode: {
+        //         value: 2
+        //     },
+        //     showEffectOn: 'render',
+        //     rippleEffect: {
+        //         brushType: 'stroke'
+        //     },
+        //     hoverAnimation: true,
+        //     label: {
+        //         formatter: '{b}',
+        //         position: 'right',
+        //         show: true
+        //     },
+        //     itemStyle: {
+        //         color: 'purple',
+        //         shadowBlur: 10,
+        //         shadowColor: '#333'
+        //     },
+        //     zlevel: 1
+        // }
+    ]
+};;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+console.log(convertData(data.sort(function (a, b) {
+                return b.value - a.value;
+            })))
+
+       </script>
+   </body>
+</html>
