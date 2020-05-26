@@ -18,7 +18,7 @@
 </div>
 <script type='text/javascript' src='https://code.jquery.com/jquery-1.10.2.min.js?ver=1.10.2'></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=visualization&key=AIzaSyDh5wU9FWyf8YmNNXn5iG0WcrdafcVWrWk"> </script>
-<script type='text/javascript' src='https://dev.spatialdatacapture.org:8702/top50/'></script>
+<script type='text/javascript' src='http://dev.spatialdatacapture.org:8702/top50/'></script>
 <script type='text/javascript' src='./js/mapStyle.js'></script>
 <script type="text/javascript">
 	var map;
@@ -55,9 +55,9 @@
 
 			setAllMap(null);
 			markerArray = [];
-			console.log("https://dev.spatialdatacapture.org:8702/top50/");
+			console.log("http://dev.spatialdatacapture.org:8702/top50/");
 
-			$.getJSON( "https://dev.spatialdatacapture.org:8702/top50/", function( data ) {
+			$.getJSON( "http://dev.spatialdatacapture.org:8702/top50/", function( data ) {
 				$.each(data, function(k,v){
 
 					var latLng = new google.maps.LatLng(v.latitude_deg, v.longitude_deg);
