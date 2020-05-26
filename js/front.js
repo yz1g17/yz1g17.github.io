@@ -17,10 +17,10 @@ $(function () {
     // Scroll Spy
     // ---------------------------------------------- //
 
-    $('body').scrollspy({
+    (function$('body')).scrollspy({
         target: '.navbar',
         offset: 80
-    });
+    })(jQuery);
 
     // ---------------------------------------------- //
     // Preventing URL update on navigation link click
