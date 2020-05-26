@@ -57,9 +57,9 @@
 
 			setAllMap(null);
 			markerArray = [];
-			console.log("http://dev.spatialdatacapture.org:8702/top50/");
+			console.log("http://dev.spatialdatacapture.org:8702/top50");
 
-			$.getJSON( "http://dev.spatialdatacapture.org:8702/top50/", function( data ) {
+			$.getJSON( "http://dev.spatialdatacapture.org:8702/top50", function( data ) {
 				$.each(data, function(k,v){
 
 					var latLng = new google.maps.LatLng(v.latitude_deg, v.longitude_deg);
@@ -77,7 +77,7 @@
 							infowindow.setContent("");
 
 							map.setCenter(new google.maps.LatLng(v.latitude_deg, v.longitude_deg));
-							$.getJSON("http://dev.spatialdatacapture.org:8702/top50/", function( data ) {
+							$.getJSON("http://dev.spatialdatacapture.org:8702/top50", function( data ) {
 								var content = "<b>Name: </b>"+v.Airport+"<br/> <br/><b>Rank: </b>"+v.Rank+"<br/> <br/><b>Location:</b> "+v.Location+" <br/> <br/><b>Position:</b> "+ v.latitude_deg + ", " + v.longitude_deg +" <br/><br/> <b>Total passengers: </b>"+ v.Total_passengers;
 						    	infowindow.setContent(content);
 						    });
